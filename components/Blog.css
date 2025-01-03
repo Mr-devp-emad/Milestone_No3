@@ -1,0 +1,54 @@
+#post{
+  position: relative;
+  transition: ease-out;
+  transition-duration: 200ms;
+  cursor: pointer;
+  
+
+}
+#post:hover{
+  transform: translateY(-50);
+  box-shadow: rgba(0, 255, 34, 0.15) 1.95px 1.95px 2.6px;
+}
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+#shimmer-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    #3dd2ff,   /* Light Green */
+    #03ffff,   /* Lighter Green */
+    #18c8f4    /* Light Green */
+  );
+  background-size: 200% 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  animation: shimmer 2s linear infinite;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shimmer-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.shimmer-button:focus {
+  outline: none;
+}
