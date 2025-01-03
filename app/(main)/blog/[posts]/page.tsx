@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import PostLayout from "@/components/PostLayout"; // Post layout component
+import { useParams } from "next/navigation"; // Hook for accessing params in Client Components
 import { gsap } from "gsap";
 
 // Data for each post
@@ -10,159 +11,112 @@ const postsData = [
     id: "1",
     title: "Ferrari Enzo",
     img: "/enzo.jpg",
-    content: `Ferrari Enzo: A Revolutionary Masterpiece of Automotive Engineering
+    content: `
+**Ferrari Enzo: A Revolutionary Masterpiece of Automotive Engineering**
 
 The Ferrari Enzo, named after the legendary founder of Ferrari, Enzo Ferrari, is more than just a car—it's a symbol of innovation, speed, and luxury. Launched in 2002, this limited-edition hypercar redefined automotive performance, setting new benchmarks for design, engineering, and exclusivity.
+Ferrari Enzo: A Masterpiece of Automotive Excellence
 
-Key Details of the Ferrari Enzo
-Design: The Ferrari Enzo boasts an aerodynamic design inspired by Formula 1 technology. Its sharp lines, sculpted body, and aggressive stance make it instantly recognizable. The lightweight carbon-fiber body and butterfly doors enhance both aesthetics and performance.
-Engine & Performance: At its heart lies a 6.0-liter naturally aspirated V12 engine, delivering an awe-inspiring 651 horsepower and 485 lb-ft of torque. It accelerates from 0 to 60 mph in just 3.14 seconds, with a top speed of 217 mph (350 km/h).
-Interior: The minimalist interior focuses on functionality and driver engagement. Carbon-fiber racing seats, a digital instrument cluster, and an F1-inspired steering wheel ensure a track-ready experience.
-Production: Only 399 units of the Ferrari Enzo were produced, making it one of the most exclusive Ferraris ever made.
-Models & Variants
-While the Ferrari Enzo itself was a standalone model, its spirit lives on in its successors:
+The Ferrari Enzo, introduced between 2002 and 2004, is a mid-engine marvel named after Ferrari's founder, Enzo Ferrari. This hypercar encapsulates the brand’s Formula 1 engineering, boasting a 6.0-liter V12 engine that produces 651 horsepower, catapulting it from 0 to 60 mph in just 3.3 seconds. With a top speed of 218 mph (351 km/h), the Enzo stands as a symbol of Ferrari’s pursuit of speed and innovation.
 
-LaFerrari (2013): The hybrid hypercar successor to the Enzo, featuring a 6.3L V12 engine paired with an electric motor, delivering 950 horsepower.
-FXX (2005): A track-only variant of the Enzo with improved aerodynamics, enhanced performance, and a focus on extreme driving experiences.
-Pricing
-When launched, the Ferrari Enzo was priced at $659,330. Due to its limited production and iconic status, its value has skyrocketed in the collector's market:
+Its carbon-fiber bodywork and lightweight aluminum chassis ensure an impeccable balance of power and aerodynamics, while the F1-style transmission provides a racing experience tailored for the road. Limited to just 400 units, this rare masterpiece originally sold for $659,000 but now fetches millions, cementing its status as an icon of automotive history.
 
-Auction Prices: Depending on the condition and provenance, an Enzo can fetch between $2.5 million and $5 million at auctions.
-Celebrity Provenance: Models with celebrity ownership, like the Enzo gifted to Pope John Paul II, have sold for even higher prices.
-Revolutionary Impact
-The Ferrari Enzo was a technological revolution:
+The Ferrari Enzo is not just a car—it’s a legend that defines Ferrari's legacy in precision, exclusivity, and unparalleled design.
+**Key Details of the Ferrari Enzo:**
+- **Design:** Aerodynamic design inspired by Formula 1 technology with a lightweight carbon-fiber body and butterfly doors.
+- **Engine:** A 6.0-liter naturally aspirated V12 delivering 651 horsepower and a top speed of 217 mph.
+- **Interior:** Carbon-fiber racing seats, a digital instrument cluster, and an F1-inspired steering wheel.
+- **Exclusivity:** Only 399 units were produced, making it one of the most exclusive Ferraris ever.
 
-Formula 1 Influence: Incorporating F1 technology like carbon-ceramic brakes, a semi-automatic paddle-shift gearbox, and a carbon-fiber chassis.
-Aerodynamics: Its advanced aerodynamics, including active spoilers and diffusers, paved the way for future supercar designs.
-Legacy: The Enzo remains a benchmark for Ferrari’s hypercars, influencing designs and engineering for decades.
-`,
+**Pricing:** Auction prices range from $2.5 million to $5 million due to its rarity and iconic status.
+    `,
   },
   {
     id: "2",
     title: "Bentley Mulliner GT",
     img: "/bently.jpg",
-    content: `Bentley Mulliner GT: The Pinnacle of Bespoke Luxury and Performance
+    content: `
+**Bentley Mulliner GT: The Pinnacle of Bespoke Luxury and Performance**
 
-The Bentley Mulliner GT is the epitome of craftsmanship, performance, and exclusivity. Designed by Bentley's prestigious Mulliner division, this grand tourer takes personalization and luxury to unparalleled heights. It represents a perfect blend of heritage and innovation, appealing to those who demand a bespoke experience combined with high performance.
+The Bentley Mulliner GT represents the ultimate blend of heritage and innovation, appealing to those who demand bespoke luxury combined with high performance.
+  The Bentley Mulliner GT is the epitome of elegance, craftsmanship, and exclusivity in the grand touring segment. Created by Bentley's in-house coachbuilding division, Mulliner, this masterpiece elevates the already luxurious Continental GT to new heights of personalization and sophistication.
 
-Key Details of the Bentley Mulliner GT
-Design: The Mulliner GT boasts a timeless yet modern design with intricate details. From its diamond-in-diamond quilted interior to the exclusive 22-inch Mulliner wheels, every inch exudes sophistication. The polished chrome grille, unique Mulliner badging, and meticulously hand-finished bodywork showcase its premium pedigree.
-Engine & Performance: Under the hood, the Mulliner GT offers two engine options:
-A 6.0-liter W12 engine producing 626 horsepower, enabling a 0–60 mph time of 3.6 seconds.
-A 4.0-liter V8 engine generating 542 horsepower, delivering both agility and efficiency.
-Both configurations ensure a refined yet thrilling driving experience with Bentley's all-wheel-drive system and adaptive chassis technology.
-Interior: The interior of the Mulliner GT is a haven of luxury. It features handcrafted materials, including the finest leather, veneers, and metals. Options for customization include over 88 piano wood veneers, bespoke embroidery, and customizable ambient lighting. The rotating display adds a futuristic touch to its classic appeal.
-Craftsmanship: Mulliner’s artisans meticulously handcraft each car, offering limitless possibilities for personalization, from custom colors to monogrammed finishes.
-Models & Variants
-The Mulliner GT is available in the following configurations:
+Under the hood, the Mulliner GT is powered by either a 4.0-liter V8 or a 6.0-liter W12 engine, delivering breathtaking performance and effortless refinement. The W12 variant offers 650 horsepower, reaching 0-60 mph in just 3.5 seconds, with a top speed of 208 mph.
 
-Coupe: A sleek and dynamic body style emphasizing performance and aesthetics.
-Convertible: For those who prefer open-air luxury, offering the same bespoke design with an added sense of freedom.
-Pricing
-The Bentley Mulliner GT's starting price reflects its exclusivity and craftsmanship:
+What sets the Mulliner GT apart is its bespoke detailing. Each car features exclusive 22-inch Mulliner wheels, hand-stitched interiors with quilted leather, and intricate diamond-in-diamond embroidery requiring 400,000 stitches. The dashboard includes a bespoke Breitling clock, and the veneer finishes are customizable to the owner's exact preferences.
 
-Base Price: Starts at approximately $245,000 (V8 variant) and $275,000 (W12 variant).
-Customizations: Depending on the bespoke features and finishes, the price can exceed $400,000.
-Revolutionary Impact
-The Bentley Mulliner GT stands as a beacon of bespoke automotive excellence:
+Limited production and tailored craftsmanship ensure that every Mulliner GT is unique, embodying Bentley's heritage of artistry and innovation.
 
-Customization Leader: It redefines personalization, offering limitless options for buyers to create a truly unique vehicle.
-Blend of Heritage and Modernity: It celebrates Bentley's heritage while incorporating cutting-edge technology and innovation.
-Benchmark for Luxury: The Mulliner GT sets the standard for other luxury grand tourers in the market.
-`,
+
+
+
+
+
+
+
+
+
+**Key Details of the Bentley Mulliner GT:**
+- **Design:** Timeless design with intricate diamond-in-diamond quilting, 22-inch Mulliner wheels, and polished chrome grille.
+- **Engine:** Options include a 6.0-liter W12 (626 hp) or 4.0-liter V8 (542 hp) for refined performance.
+- **Interior:** Handcrafted materials, 88 veneer options, and a futuristic rotating display.
+
+**Pricing:** Starting at $245,000, with bespoke options pushing prices above $400,000.
+    `,
   },
   {
     id: "3",
     title: "Bugatti Mistral",
     img: "/bugatti.jpg",
-    content: `Bugatti Mistral: The Ultimate Open-Top Hypercar
+    content: `
+**Bugatti Mistral: The Ultimate Open-Top Hypercar**
 
-The Bugatti Mistral is a breathtaking masterpiece that combines Bugatti’s legendary engineering with a design tailored for open-air exhilaration. Unveiled in 2022 as a final tribute to the iconic W16 engine, the Mistral marks a new chapter in Bugatti’s history while celebrating its legacy of unmatched performance and luxury.
+The Bugatti Mistral is a masterpiece of engineering, blending Bugatti's iconic W16 engine with an open-top design for unparalleled luxury and speed.
+ The Bugatti Mistral is a breathtaking roadster that represents the swan song for Bugatti's iconic W16 engine. Unveiled in 2022, the Mistral combines unmatched performance with stunning open-top design, limited to just 99 units worldwide, making it an exclusive collector's masterpiece.
 
-Key Details of the Bugatti Mistral
-Design:
-The Mistral's design is a bold statement of elegance and aerodynamics. Its sleek, open-top silhouette is accentuated by sculpted lines, a horseshoe-shaped grille, and X-shaped tail lights that echo the Bugatti Bolide. The bespoke color palettes and unique trim options highlight Bugatti's commitment to individuality.
-Engine & Performance:
-At its core lies Bugatti’s legendary 8.0-liter quad-turbocharged W16 engine, delivering an astonishing 1,578 horsepower. Paired with a seven-speed dual-clutch transmission, the Mistral achieves a top speed of 261 mph (420 km/h), making it the fastest roadster ever built.
-Interior:
-The cabin is a haven of luxury, blending high-grade materials such as carbon fiber, leather, and titanium. The open cockpit provides an immersive driving experience, connecting the driver to the environment while ensuring utmost comfort and exclusivity.
-Exclusivity:
-Only 99 units of the Mistral are being produced, ensuring its status as a collector’s dream. Each model is meticulously handcrafted, allowing owners to personalize their vehicle to reflect their style.
-Pricing
-The Bugatti Mistral's exclusivity and engineering marvel come with a premium price:
+At its heart lies an 8.0-liter quad-turbocharged W16 engine delivering a staggering 1,578 horsepower, the same powerhouse as the Bugatti Chiron Super Sport 300+. This allows the Mistral to achieve speeds exceeding 260 mph (420 km/h), making it one of the fastest roadsters ever built.
 
-Base Price: Approximately $5 million.
-Customization: Depending on bespoke options, the price can escalate significantly.
-Revolutionary Impact
-The Bugatti Mistral is a groundbreaking hypercar that signifies a turning point for Bugatti:
+The design is a tribute to Bugatti's heritage, featuring a striking horseshoe grille, X-shaped taillights inspired by the Bugatti Bolide, and a windscreen seamlessly integrated into the flowing lines of the car. Luxurious interiors include bespoke materials and cutting-edge craftsmanship, ensuring unparalleled comfort even at extreme speeds.
 
-Farewell to the W16 Engine: The Mistral is the last model to feature the iconic W16 engine, closing a remarkable era of engineering excellence.
-Record-Breaking Performance: As the fastest roadster ever, it pushes the boundaries of open-top hypercars.
-Exquisite Craftsmanship: The Mistral showcases Bugatti’s commitment to blending art with engineering, offering unparalleled luxury and personalization.
-`,
+Priced at over $5 million, the Bugatti Mistral is not just a car—it’s a symphony of speed, artistry, and exclusivity, marking the end of an era for one of the most legendary engines in automotive history.
+**Key Details of the Bugatti Mistral:**
+- **Design:** Sculpted lines, X-shaped tail lights, and bespoke color options.
+- **Engine:** An 8.0-liter quad-turbocharged W16 with 1,578 hp, achieving a top speed of 261 mph.
+- **Exclusivity:** Limited to just 99 units, each highly personalized.
+
+    `,
   },
   {
     id: "4",
     title: "Aston Martin",
     img: "/aston.webp",
-    content: `Aston Martin: The Iconic British Automaker of Elegance and Performance
+    content: `
+**Aston Martin: The Iconic British Automaker of Elegance and Performance**
 
-Aston Martin is synonymous with luxury, sophistication, and high-performance engineering. Founded in 1913 by Lionel Martin and Robert Bamford, the brand has become a global symbol of British craftsmanship and design. Aston Martin's cars seamlessly combine timeless aesthetics with cutting-edge technology, catering to automotive enthusiasts who demand both style and substance.
+Aston Martin combines timeless aesthetics with cutting-edge technology, symbolizing luxury and sophistication.
+ Aston Martin is synonymous with timeless design, unparalleled craftsmanship, and exhilarating performance. Founded in 1913, the marque has become a global icon, blending British sophistication with cutting-edge automotive innovation. Aston Martin’s vehicles embody the spirit of a grand tourer, seamlessly combining luxury with speed.
 
-Key Highlights of Aston Martin
-Heritage and History
-Aston Martin's rich legacy spans over a century, marked by innovation and resilience. Known for its connection to motorsports and James Bond films, the brand has cultivated an image of sophistication and adventure.
+From the elegant DB series, immortalized in James Bond films, to the high-performance Vantage, and the revolutionary Valhalla hypercar, every Aston Martin is a masterpiece. Powered by advanced V8 or V12 engines, their cars deliver a thrilling driving experience, while interiors feature hand-stitched leather, refined wood veneers, and state-of-the-art technology.
 
-Design Philosophy
-Aston Martin vehicles are celebrated for their timeless and elegant designs. The seamless blend of flowing lines, aerodynamic contours, and luxurious interiors exemplify the brand's dedication to artistry.
+Recent innovations include the DBX, Aston Martin’s first luxury SUV, offering sporty dynamics in a family-friendly package, and the Valhalla, a hybrid hypercar pushing the boundaries of engineering and sustainability.
 
-Performance Engineering
-Whether it’s a grand tourer or a high-performance sports car, Aston Martin focuses on delivering thrilling driving experiences. Advanced engineering, powerful engines, and precise handling define every model.
+Whether on a racetrack or a scenic road, Aston Martin cars are a statement of elegance, power, and exclusivity—a true embodiment of "Power, Beauty, and Soul."
 
-Craftsmanship
-Each Aston Martin vehicle is handcrafted with meticulous attention to detail. From the finest materials in the interior to bespoke customization options, the brand offers unparalleled personalization.
 
-Popular Aston Martin Models
-Aston Martin DB Series
+**Key Details of Aston Martin:**
+- **Design Philosophy:** Aerodynamic contours with handcrafted luxury interiors.
+- **Popular Models:** DB series (DB11, DB12), Vantage, Valkyrie, and Rapide E.
+- **Performance:** High-performance engines delivering thrilling driving experiences.
 
-The DB11, DB12, and other DB models are iconic grand tourers known for their balance of luxury and power.
-The DB5, made famous by James Bond, remains a cultural icon.
-Aston Martin Vantage
-
-A performance-focused sports car, available in V8 and V12 variants, delivering agility and speed.
-Aston Martin Valkyrie
-
-A hypercar developed in collaboration with Red Bull Racing, showcasing extreme performance and cutting-edge technology.
-Aston Martin DBS Superleggera
-
-A flagship grand tourer combining breathtaking design with a twin-turbo V12 engine.
-Aston Martin Rapide E
-
-The brand’s first electric vehicle, representing its commitment to a sustainable future.
-Pricing
-Aston Martin vehicles are positioned in the premium luxury market, with prices reflecting their exclusivity:
-
-Entry-level models like the Vantage start at approximately $150,000.
-Grand tourers such as the DB11 and DBS Superleggera range from $220,000 to $350,000.
-Hypercars like the Valkyrie exceed $3 million.
-Revolutionary Impact
-Innovation in Design and Engineering
-Aston Martin has continually redefined automotive design, blending aerodynamics with artistry.
-
-Motorsport Heritage
-Aston Martin has a strong presence in motorsports, including the 24 Hours of Le Mans and Formula 1, enhancing its performance credentials.
-
-Cultural Icon
-Through its association with the James Bond franchise, Aston Martin has become a symbol of style and adventure worldwide.
-
-Sustainability
-With models like the Rapide E and upcoming hybrid and electric vehicles, Aston Martin is embracing eco-friendly technologies while maintaining its luxury ethos.
-`,
+**Pricing:** Entry-level models start at $150,000, with hypercars like Valkyrie exceeding $3 million.
+    `,
   },
 ];
 
-const BlogPost = ({ params }: { params: { posts: string } }) => {
-  const post = postsData.find((item) => item.id === params.posts);
+const BlogPost = () => {
+  const params = useParams(); // Access the route params in Client Components
+  const postId = params?.posts; // Get the `posts` param from the URL
+  const post = postsData.find((item) => item.id === postId);
 
   const [comments, setComments] = useState<string[]>([]);
   const [newComment, setNewComment] = useState<string>("");
@@ -210,7 +164,7 @@ const BlogPost = ({ params }: { params: { posts: string } }) => {
       </div>
 
       {/* Comments Section */}
-      <div className="comments-section mt-6  flex justify-center flex-col ml-[15%] bg-cover overflow-hidden pb-12">
+      <div className="comments-section mt-6 flex justify-center flex-col ml-[15%] bg-cover overflow-hidden pb-12">
         <h2 className="text-2xl font-bold mb-4">Comments</h2>
 
         {/* Comment Input */}
