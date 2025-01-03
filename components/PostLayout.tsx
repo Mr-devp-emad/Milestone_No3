@@ -1,13 +1,22 @@
-// components/Post.js
+// components/Post.tsx
 "use client";
 
+import Image from "next/image";
 import { ReactNode, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const Post = ({ title, content, imageUrl }: {title:string, content: ReactNode, imageUrl:string}) => {
-  const postRef = useRef(null);
+type PostProps = {
+  title: string;
+  content: ReactNode;
+  imageUrl: string;
+};
+
+const Post = ({ title, content, imageUrl }: PostProps) => {
+  const postRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!postRef.current) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         postRef.current,
@@ -22,12 +31,14 @@ const Post = ({ title, content, imageUrl }: {title:string, content: ReactNode, i
   return (
     <div
       ref={postRef}
-      className="container mx-auto p-4 flex flex-col gap-6 bg-white shadow-lg rounded-lg max-w-4xl border border-gray-200"
+      className="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-4xl border border-gray-200"
     >
       <div className="overflow-hidden rounded-lg">
-        <img
+        <Image
           src={imageUrl}
           alt={title}
+          width={800}
+          height={400}
           className="w-full h-auto object-cover rounded-md"
         />
       </div>

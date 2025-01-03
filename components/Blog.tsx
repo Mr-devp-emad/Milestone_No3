@@ -2,7 +2,7 @@
 import "./Blog.css";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import { Card } from "./ui/card";
 import {
   CardContent,
@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import Link from "next/dist/client/link";
 
 const posts = [
   {
