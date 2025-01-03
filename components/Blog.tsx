@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card } from "./ui/card";
-
 import {
   CardContent,
   CardDescription,
@@ -46,7 +45,7 @@ const Blog = () => {
         className="w-full flex justify-around relative top-0 flex-wrap mb-1 gap-2"
       >
         {posts.map((post) => (
-          <Link href={`/blog`}>
+          <Link href={`/blog`} key={post.id}>
             <Card className="w-[400px] cursor-pointer" id="post">
               <CardHeader>
                 <CardTitle>{post.title}</CardTitle>

@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 const posts = [
@@ -21,12 +22,18 @@ const BlogListing = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen  flex justify-around flex-wrap gap-4">
+    <div className="w-full h-screen flex justify-around flex-wrap gap-4 p-4">
       {posts.map((post) => (
         <Link href={`/blog/${post.id}`} key={post.id}>
-          <div className="card p-8 border rounded shadow hover:scale-105 transition-transform w-[400px]">
-            <img src={post.imageUrl} alt={post.title} className="w-[500px]  object-cover" />
-            <h3 className="text-xl mt-2">{post.title}</h3>
+          <div className="card p-4 border rounded shadow-lg hover:scale-105 transition-transform w-[300px]">
+            <Image
+              src={post.imageUrl}
+              alt={post.title}
+              width={400}
+              height={300}
+              className="rounded object-cover"
+            />
+            <h3 className="text-xl font-bold mt-2">{post.title}</h3>
           </div>
         </Link>
       ))}
